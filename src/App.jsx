@@ -160,6 +160,16 @@ export default function App() {
     }, 4000); // 4 seconds per dish
     return () => clearInterval(interval);
   }, []);
+
+  // Track page scroll to elevate sticky nav bar when scrolled
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Modals state
   const [isAvailabilityModalOpen, setIsAvailabilityModalOpen] = useState(false);
@@ -275,9 +285,9 @@ export default function App() {
       </aside>
 
       {/* ------------------------------------------------------------------ */}
-      {/* 2. MAIN NAVIGATION                                                 */}
+      {/* 2. MAIN NAVIGATION (STICKY ON ALL SCREENS)                         */}
       {/* ------------------------------------------------------------------ */}
-      <header className="main-header">
+      <header className={`main-header ${isScrolled ? 'is-scrolled' : ''}`}>
         <div className="ow-container ow-container-wide">
           <div className="main-nav-inner">
             {/* Logo */}

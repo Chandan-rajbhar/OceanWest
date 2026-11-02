@@ -44,7 +44,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip prevents horizontal scrollbars without breaking position: sticky */
 }
 
 body {
@@ -55,14 +55,14 @@ body {
   color: var(--color-text-main);
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip prevents horizontal scrollbars without breaking position: sticky */
   position: relative;
 }
 
 #root {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: visible; /* Must be visible so position: sticky on header tracks viewport scroll */
 }
 
 /* Typography Helpers */
