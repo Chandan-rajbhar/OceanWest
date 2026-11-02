@@ -1828,11 +1828,25 @@ textarea.form-control {
   font-size: 12.5px;
   color: #AAB7AF;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-link-item a svg {
+  color: #BA8D5B;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .footer-link-item a:hover {
   color: #C8A172;
+}
+
+.footer-link-item a:hover svg {
+  color: #E2DBD0;
+  transform: translateX(2px);
 }
 
 .footer-contact-item {
@@ -1989,4 +2003,90 @@ textarea.form-control {
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: slideUp 0.3s ease;
   max-width: calc(100vw - 40px);
+}
+
+/* --------------------------------------------------------------------------
+   TABLET & MOBILE FIXED BOTTOM NAVIGATION (<= 900px)
+   -------------------------------------------------------------------------- */
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(250, 248, 245, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid #EAE4D9;
+    box-shadow: 0 -4px 20px rgba(21, 34, 27, 0.08);
+    z-index: 995;
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: #636D66;
+    text-decoration: none;
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    min-width: 52px;
+    position: relative;
+  }
+
+  .bottom-nav-item svg {
+    color: #727B75;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .bottom-nav-item:hover {
+    color: #192720;
+  }
+
+  .bottom-nav-item.active {
+    color: #BA8D5B;
+    font-weight: 600;
+  }
+
+  .bottom-nav-item.active svg {
+    transform: scale(1.1);
+    color: #BA8D5B;
+  }
+
+  .bottom-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 3px;
+    background-color: #BA8D5B;
+    border-radius: 0 0 3px 3px;
+  }
+
+  /* Provide bottom clearance on tablet & mobile so fixed bar doesn't obscure content */
+  .oceanwest-app {
+    padding-bottom: 64px;
+  }
+
+  /* Adjust toast notice position on mobile/tablet so it stays above the bottom bar */
+  .toast-notice {
+    bottom: 74px;
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, NavLink, Link, useNavigate, Navigate } from 'react-router-dom';
 import {
+  Home,
   Phone,
   Mail,
   MapPin,
@@ -405,15 +406,46 @@ export default function App() {
               </div>
             </div>
 
-            {/* Column 2: Culinary Programs - Direct Routes */}
+            {/* Column 2: Navigation & Programs */}
             <div>
-              <h4 className="footer-col-title">Culinary Programs</h4>
+              <h4 className="footer-col-title">Navigation &amp; Programs</h4>
               <ul className="footer-links-list">
-                <li className="footer-link-item"><Link to="/packages">Wedding Receptions</Link></li>
-                <li className="footer-link-item"><Link to="/film-catering">Film &amp; Production Catering</Link></li>
-                <li className="footer-link-item"><Link to="/disciplines">Corporate Galas</Link></li>
-                <li className="footer-link-item"><Link to="/disciplines">Party Platters &amp; Canapés</Link></li>
-                <li className="footer-link-item"><Link to="/courses">First Courses &amp; Plated Dinners</Link></li>
+                <li className="footer-link-item">
+                  <Link to="/">
+                    <Home size={13} />
+                    <span>Home</span>
+                  </Link>
+                </li>
+                <li className="footer-link-item">
+                  <Link to="/disciplines">
+                    <Sparkles size={13} />
+                    <span>Disciplines</span>
+                  </Link>
+                </li>
+                <li className="footer-link-item">
+                  <Link to="/courses">
+                    <Utensils size={13} />
+                    <span>Courses &amp; Delicacies</span>
+                  </Link>
+                </li>
+                <li className="footer-link-item">
+                  <Link to="/packages">
+                    <Calendar size={13} />
+                    <span>Event Packages</span>
+                  </Link>
+                </li>
+                <li className="footer-link-item">
+                  <Link to="/film-catering">
+                    <Clock size={13} />
+                    <span>Film &amp; Production Catering</span>
+                  </Link>
+                </li>
+                <li className="footer-link-item">
+                  <Link to="/inquiry">
+                    <Mail size={13} />
+                    <span>Direct Inquiries</span>
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -469,7 +501,49 @@ export default function App() {
       </footer>
 
       {/* ------------------------------------------------------------------ */}
-      {/* 5. MODALS & DIALOGS                                                */}
+      {/* 5. TABLET & MOBILE BOTTOM NAVIGATION (FOOTER ICONS BAR)            */}
+      {/* ------------------------------------------------------------------ */}
+      <nav className="mobile-bottom-nav" aria-label="Tablet and Mobile Bottom Navigation">
+        <NavLink 
+          to="/" 
+          end 
+          className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}
+        >
+          <Home size={19} />
+          <span>Home</span>
+        </NavLink>
+        <NavLink 
+          to="/disciplines" 
+          className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}
+        >
+          <Sparkles size={19} />
+          <span>Disciplines</span>
+        </NavLink>
+        <NavLink 
+          to="/courses" 
+          className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}
+        >
+          <Utensils size={19} />
+          <span>Courses</span>
+        </NavLink>
+        <NavLink 
+          to="/packages" 
+          className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}
+        >
+          <Calendar size={19} />
+          <span>Packages</span>
+        </NavLink>
+        <NavLink 
+          to="/inquiry" 
+          className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}
+        >
+          <Mail size={19} />
+          <span>Inquire</span>
+        </NavLink>
+      </nav>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 6. MODALS & DIALOGS                                                */}
       {/* ------------------------------------------------------------------ */}
 
       {/* A: Date Availability Checker Modal */}
