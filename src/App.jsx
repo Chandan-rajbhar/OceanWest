@@ -10,7 +10,6 @@ import {
   Users,
   Check,
   ChevronRight,
-  ChevronLeft,
   Download,
   Star,
   Menu as MenuIcon,
@@ -23,48 +22,48 @@ import {
 } from 'lucide-react';
 import './App.css';
 
-import heroPear from './assets/hero-pear.jpg';
-import heroSalmon from './assets/hero-salmon.jpg';
-import heroBeef from './assets/hero-beef.jpg';
-import heroTacos from './assets/hero-tacos.jpg';
-import heroHalibut from './assets/hero-halibut.jpg';
+import heroPearAi from './assets/hero-pear-ai.jpg';
+import heroSalmonAi from './assets/hero-salmon-ai.jpg';
+import heroBeefAi from './assets/hero-beef-ai.jpg';
+import heroTacosAi from './assets/hero-tacos-ai.jpg';
+import heroHalibutAi from './assets/hero-halibut-ai.jpg';
 
-// 5 Curated authentic dishes for the rotating hero slideshow
+// 5 Curated authentic AI-generated Michelin-star dishes perfectly proportioned to fill the hero card
 const HERO_SLIDES = [
   {
     id: 1,
-    image: heroPear,
+    image: heroPearAi,
     title: "Bosc Pear with Gorgonzola & Thyme-Infused Honey",
     course: "Executive Chef's Signature First Course • Pacific Northwest Harvest",
-    alt: "Roasted Bosc Pear with Gorgonzola and Thyme-Infused Honey"
+    alt: "Roasted Bosc Pear with Gorgonzola, Candied Walnuts, and Thyme-Infused Honey"
   },
   {
     id: 2,
-    image: heroSalmon,
+    image: heroSalmonAi,
     title: "Wild Pacific Salmon with Citrus Herb Glaze",
     course: "Artisanal Main • Haida Gwaii Wild Catch & Fine Herbs",
-    alt: "Wild Pacific Salmon with Citrus Herb Glaze and Greens"
+    alt: "Pan-Seared Wild Pacific Salmon with Citrus Glaze and Braised Asparagus"
   },
   {
     id: 3,
-    image: heroBeef,
+    image: heroBeefAi,
     title: "Prime Angus Beef Medallions & Truffle Demi",
     course: "Artisanal Main • Slow-Roasted Alberta AAA Tenderloin",
-    alt: "Prime Angus Beef Medallions with Rosemary and Truffle Reduction"
+    alt: "Prime Angus Beef Tenderloin Medallion with Black Garlic and Truffle Demi-Glace"
   },
   {
     id: 4,
-    image: heroTacos,
+    image: heroTacosAi,
     title: "Pacific Coast Street Canapés & Artisan Tacos",
     course: "Passed Cocktail Canapés • Late-Night Feature",
-    alt: "Fresh Artisan Tacos and Passed Hors d'oeuvres"
+    alt: "Artisan Spot Prawn Tacos and Fresh Mango Salsa Canapés"
   },
   {
     id: 5,
-    image: heroHalibut,
+    image: heroHalibutAi,
     title: "Pan-Seared Pacific Halibut & Golden Glaze",
     course: "Chef's Feature • Wild Harvest British Columbia",
-    alt: "Pan-Seared Pacific Halibut with Seasonal Greens"
+    alt: "Pan-Seared Pacific Halibut with Saffron Citrus Glaze and Summer Vegetables"
   }
 ];
 
@@ -151,26 +150,16 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   
-  // Rotating Hero Slideshow state
+  // Automated Hero Showcase state (purely automated, no manual controls)
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Automatically cycle to the next culinary image every 3.5 seconds
+  // Automatically cycle through dishes one by one with smooth cinematic animation
   useEffect(() => {
-    if (isHovered) return;
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
-    }, 3500);
+    }, 4000); // 4 seconds per dish
     return () => clearInterval(interval);
-  }, [isHovered]);
-
-  const nextSlide = () => {
-    setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(prev => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  };
+  }, []);
   
   // Modals state
   const [isAvailabilityModalOpen, setIsAvailabilityModalOpen] = useState(false);
@@ -440,12 +429,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Hero Culinary Rotating Carousel */}
-            <div 
-              className="hero-visual-wrap"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
+            {/* Right Hero Culinary Auto-Showcase */}
+            <div className="hero-visual-wrap">
               <div className="hero-img-container carousel-container">
                 {HERO_SLIDES.map((slide, index) => (
                   <div 
@@ -453,18 +438,11 @@ export default function App() {
                     className={`carousel-slide ${index === currentSlide ? 'active' : ''}`}
                     aria-hidden={index !== currentSlide}
                   >
-                    {/* Ambient backdrop layer */}
-                    <img 
-                      src={slide.image} 
-                      alt="" 
-                      className="carousel-bg-blur"
-                      aria-hidden="true" 
-                    />
-                    {/* Sharp, fully fitted main dish image without cropping */}
+                    {/* Full card-fitting Michelin culinary dish image */}
                     <img 
                       src={slide.image} 
                       alt={slide.alt} 
-                      className="carousel-main-img"
+                      className="carousel-dish-img"
                     />
                     <div className="hero-dish-overlay">
                       <div className="hero-dish-title">{slide.title}</div>
@@ -473,35 +451,12 @@ export default function App() {
                   </div>
                 ))}
 
-                {/* Prev & Next navigation buttons */}
-                <button 
-                  type="button" 
-                  className="carousel-arrow prev" 
-                  onClick={prevSlide}
-                  aria-label="Previous culinary feature"
-                >
-                  <ChevronLeft size={18} />
-                </button>
-                <button 
-                  type="button" 
-                  className="carousel-arrow next" 
-                  onClick={nextSlide}
-                  aria-label="Next culinary feature"
-                >
-                  <ChevronRight size={18} />
-                </button>
-
-                {/* Progress Indicators */}
-                <div className="carousel-indicators">
-                  {HERO_SLIDES.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      className={`indicator-dot ${idx === currentSlide ? 'active' : ''}`}
-                      onClick={() => setCurrentSlide(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
+                {/* Subtle Luxury Animated Progress Line (purely visual) */}
+                <div className="carousel-progress-track">
+                  <div 
+                    key={currentSlide} 
+                    className="carousel-progress-bar"
+                  />
                 </div>
               </div>
             </div>
